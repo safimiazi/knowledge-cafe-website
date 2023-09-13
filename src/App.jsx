@@ -10,13 +10,16 @@ const [bookmarks, setBookmarks] = useState([]);
 const [readingTime, setReadingTime] = useState(0)
 
 const handleAddBookmark = blog => {
- const newBookmarks = [...bookmarks, blog]
-  setBookmarks(newBookmarks)
+  if(!bookmarks.includes(blog)){
+    const newBookmarks = [...bookmarks, blog]
+    setBookmarks(newBookmarks)
+}
 }
 
-const handleMarksAsRead = (time) => {
+const handleMarksAsRead = (time, title) => {
   setReadingTime(readingTime + time)
-  
+  const deleteTitle = bookmarks.filter(title => title !== title)
+  setBookmarks(deleteTitle)
 }
 
   return (
@@ -30,4 +33,4 @@ const handleMarksAsRead = (time) => {
   )
 }
 
-export default App
+export default App;
